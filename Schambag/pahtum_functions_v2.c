@@ -19,30 +19,30 @@ void printBoard(char board[SIZE][SIZE]) {
     // Print column numbers
     printf("    ");
     for (int col = 0; col < SIZE; col++) {
-        printf(" %2d ", col);
+        printf("  %2d ", col);
     }
     printf("\n");
 
     // Print top border
     printf("    ");
-    for (int col = 0; col < SIZE * 4 + 1; col++) {
+    for (int col = 0; col < SIZE * 5 + 1; col++) {
         printf("-");
     }
     printf("\n");
 
     for (int row = 0; row < SIZE; row++) {
-        // Print row number
-        printf("%2d |", row);
+        // Print row number and left border
+        printf(" %2d |", row);
         for (int col = 0; col < SIZE; col++) {
             // Set background color based on cell content
             if (board[row][col] == 'X') {
-                printf("\033[0;41m\033[1;37m"); // Background color: red, Text color: black
+                printf("\033[0;41m\033[2;37m"); // Background color: red, Text color: black
             } else if (board[row][col] == 'O') {
                 printf("\033[0;42m\033[2;30m"); // Background color: green, Text color: black
             } else {
-                printf("\033[0;47m\033[1;30"); // Background color: white, Text color: black
+                printf("\033[1;30m"); // Background color: white, Text color: black
             }
-            printf(" %c ", board[row][col]);
+            printf("  %c ", board[row][col]);
             printf("\033[0m"); // Reset colors
             printf("|");
         }
@@ -50,8 +50,8 @@ void printBoard(char board[SIZE][SIZE]) {
 
         // Print inner border
         printf("    ");
-        for (int col = 0; col < SIZE; col++) {
-            printf("----");
+        for (int col = 0; col < SIZE * 5 + 1; col++) {
+            printf("-");
         }
         printf("\n");
     }
@@ -138,7 +138,7 @@ void runUnitTests() {
 
 // Function to score the board and show breakdown of scores
 void scoreBoard(char board[SIZE][SIZE], int countX[5], int countO[5]) {
-    // Intialize. To store counts of sequences of lengths 3, 4, 5, 6, and 7
+    // Initialize to store counts of sequences of lengths 3, 4, 5, 6, and 7
     for(int i = 0; i < 5; i++)
     {
         countX[i] = 0;
@@ -301,8 +301,8 @@ void playGame(char board[SIZE][SIZE], char player1, char player2) {
     printScores(countX, countO);
 }
 
-/*
-void main() {
+
+int main() {
     srand(time(NULL)); // Seed the random number generator
 
     // Run unit tests
@@ -312,5 +312,6 @@ void main() {
 
     playGame(board, player1, player2);
 
+    return 0;
 }
-*/
+
