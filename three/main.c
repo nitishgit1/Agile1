@@ -58,7 +58,7 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
                 board[row][col] = player; // Simulate placing the mark
                 int countX[5], countO[5];
                 scoreBoard(board, countX, countO);
-                if (player == 'X' && countX[4] > 0 && 
+                if (player == 'X' && 
                     ((col > 1 && board[row][col - 1] == ' ') || // Check left
                      (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
                      (row > 1 && board[row - 1][col] == ' ') || // Check up
@@ -66,7 +66,7 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
                     *x = row;
                     *y = col;
                     return;
-                } else if (player == 'O' && countO[4] > 0 &&
+                } else if (player == 'O' &&
                            ((col > 1 && board[row][col - 1] == ' ') || // Check left
                             (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
                             (row > 1 && board[row - 1][col] == ' ') || // Check up
@@ -89,7 +89,7 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
                 board[row][col] = opponent; // Simulate opponent's move
                 int countX[5], countO[5];
                 scoreBoard(board, countX, countO);
-                if (opponent == 'X' && countX[4] > 0 &&
+                if (opponent == 'X' && 
                     ((col > 1 && board[row][col - 1] == ' ') || // Check left
                      (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
                      (row > 1 && board[row - 1][col] == ' ') || // Check up
@@ -98,7 +98,7 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
                     *y = col;
                     board[row][col] = ' '; // Undo the simulation
                     return;
-                } else if (opponent == 'O' && countO[4] > 0 &&
+                } else if (opponent == 'O' && 
                            ((col > 1 && board[row][col - 1] == ' ') || // Check left
                             (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
                             (row > 1 && board[row - 1][col] == ' ') || // Check up
