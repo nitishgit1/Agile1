@@ -47,6 +47,7 @@ bool isValidMove(char board[SIZE][SIZE], int row, int col) {
 }
 
 // Function to play a move
+
 void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
     int row, col;
 
@@ -57,11 +58,19 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
                 board[row][col] = player; // Simulate placing the mark
                 int countX[5], countO[5];
                 scoreBoard(board, countX, countO);
-                if (player == 'X' && countX[4] > 0) { // Computer (X) wins
+                if (player == 'X' && countX[4] > 0 && 
+                    ((col > 1 && board[row][col - 1] == ' ') || // Check left
+                     (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
+                     (row > 1 && board[row - 1][col] == ' ') || // Check up
+                     (row < SIZE - 2 && board[row + 1][col] == ' '))) { // Check down
                     *x = row;
                     *y = col;
                     return;
-                } else if (player == 'O' && countO[4] > 0) { // Player (O) wins
+                } else if (player == 'O' && countO[4] > 0 &&
+                           ((col > 1 && board[row][col - 1] == ' ') || // Check left
+                            (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
+                            (row > 1 && board[row - 1][col] == ' ') || // Check up
+                            (row < SIZE - 2 && board[row + 1][col] == ' '))) { // Check down
                     *x = row;
                     *y = col;
                     board[row][col] = ' '; // Undo the simulation
@@ -80,12 +89,20 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
                 board[row][col] = opponent; // Simulate opponent's move
                 int countX[5], countO[5];
                 scoreBoard(board, countX, countO);
-                if (opponent == 'X' && countX[4] > 0) { // Player (X) is close to winning
+                if (opponent == 'X' && countX[4] > 0 &&
+                    ((col > 1 && board[row][col - 1] == ' ') || // Check left
+                     (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
+                     (row > 1 && board[row - 1][col] == ' ') || // Check up
+                     (row < SIZE - 2 && board[row + 1][col] == ' '))) { // Check down
                     *x = row;
                     *y = col;
                     board[row][col] = ' '; // Undo the simulation
                     return;
-                } else if (opponent == 'O' && countO[4] > 0) { // Player (O) is close to winning
+                } else if (opponent == 'O' && countO[4] > 0 &&
+                           ((col > 1 && board[row][col - 1] == ' ') || // Check left
+                            (col < SIZE - 2 && board[row][col + 1] == ' ') || // Check right
+                            (row > 1 && board[row - 1][col] == ' ') || // Check up
+                            (row < SIZE - 2 && board[row + 1][col] == ' '))) { // Check down
                     *x = row;
                     *y = col;
                     return;
@@ -95,11 +112,15 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
         }
     }
 
-    // If no winning or blocking moves, make a random move
+    // If no winning or blocking moves with at least 2 empty cells around, make a random move
     do {
         row = rand() % SIZE;
         col = rand() % SIZE;
-    } while (!isValidMove(board, row, col));
+    } while (!isValidMove(board, row, col) || 
+             (row > 1 && board[row - 2][col] != ' ') && // Check two cells up
+             (row < SIZE - 2 && board[row + 2][col] != ' ') && // Check two cells down
+             (col > 1 && board[row][col - 2] != ' ') && // Check two cells left
+             (col < SIZE - 2 && board[row][col + 2] != ' ')); // Check two cells right
 
     *x = row;
     *y = col;
