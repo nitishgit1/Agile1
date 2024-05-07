@@ -49,11 +49,58 @@ bool isValidMove(char board[SIZE][SIZE], int row, int col) {
 // Function to play a move
 void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
     int row, col;
+
+    // Check if the computer can win in the next move
+    for (row = 0; row < SIZE; row++) {
+        for (col = 0; col < SIZE; col++) {
+            if (isValidMove(board, row, col)) {
+                board[row][col] = player; // Simulate placing the mark
+                int countX[5], countO[5];
+                scoreBoard(board, countX, countO);
+                if (player == 'X' && countX[4] > 0) { // Computer (X) wins
+                    *x = row;
+                    *y = col;
+                    return;
+                } else if (player == 'O' && countO[4] > 0) { // Player (O) wins
+                    *x = row;
+                    *y = col;
+                    board[row][col] = ' '; // Undo the simulation
+                    return;
+                }
+                board[row][col] = ' '; // Undo the simulation
+            }
+        }
+    }
+
+    // Check if the player is close to winning and block them
+    char opponent = (player == 'X') ? 'O' : 'X';
+    for (row = 0; row < SIZE; row++) {
+        for (col = 0; col < SIZE; col++) {
+            if (isValidMove(board, row, col)) {
+                board[row][col] = opponent; // Simulate opponent's move
+                int countX[5], countO[5];
+                scoreBoard(board, countX, countO);
+                if (opponent == 'X' && countX[4] > 0) { // Player (X) is close to winning
+                    *x = row;
+                    *y = col;
+                    board[row][col] = ' '; // Undo the simulation
+                    return;
+                } else if (opponent == 'O' && countO[4] > 0) { // Player (O) is close to winning
+                    *x = row;
+                    *y = col;
+                    return;
+                }
+                board[row][col] = ' '; // Undo the simulation
+            }
+        }
+    }
+
+    // If no winning or blocking moves, make a random move
     do {
         row = rand() % SIZE;
         col = rand() % SIZE;
     } while (!isValidMove(board, row, col));
-    
+
     *x = row;
     *y = col;
 }
