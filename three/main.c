@@ -13,14 +13,32 @@ void initializeBoard(char board[SIZE][SIZE]){
     }
 }
 
-void printBoard(char board[SIZE][SIZE]){
-    int i, j;
-    for(i=0; i<SIZE; i++){
-        for(j=0; j<SIZE; j++){
-            printf("%c", board[i][j]);
-        }
-        printf("\n");
+// Function to print the board with ASCII graphics
+void printBoard(char board[SIZE][SIZE]) {
+    printf("    ");
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d   ", i);
     }
+    printf("\n");
+    	
+    printf("  ");
+    for (int i = 0; i <= SIZE * 4; i++) {
+        printf("-");
+    }
+    printf("\n");
+    
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d ", i);
+        for (int j = 0; j < SIZE; j++) {
+            printf("| %c ", board[i][j]);
+        }
+        printf("|\n");
+    }
+    printf("  ");
+    for (int i = 0; i <= SIZE * 4; i++) {
+        printf("-");
+    }
+    printf("\n");
 }
 
 int playMove(char board[SIZE][SIZE], char player, int *x, int *y){
