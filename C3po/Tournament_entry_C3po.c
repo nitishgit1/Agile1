@@ -86,7 +86,26 @@ void playMove(char board[SIZE][SIZE], int *x, int *y)
         }
     }
 
-    // If neither winning moves are available, make's a random move.
+    // Checks for opponent's winning moves to block.
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++) {
+            if (board[i][j] == ' ') {
+                board[i][j] = 'O'; // Assume opponent's move
+                int countO[5] = {0};
+                scoreBoard(board, countO);
+                if (countO[2] > 0 || countO[3] > 0 || countO[4] > 0) { // If opponent has a sequence of length 2 , 3 or 4, block it
+                    *x = i;
+                    *y = j;
+                    board[i][j] = ' '; // Undo opponent's move
+                    return;
+                }
+                board[i][j] = ' '; // Undo opponent's move
+            }
+        }
+    }
+
+    // If neither winning moves nor blocking moves are available, make a random move.
     int row, col;
     do
     {
