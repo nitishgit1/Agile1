@@ -179,7 +179,7 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y)
 
             // Block opponent's sequence if it's greater than or equal to 3
             int maxSequenceOpponent = evaluateMaxSequence(boardCopy, row, col, PLAYER_X);
-            if (maxSequenceOpponent >= 3)
+            if (maxSequenceOpponent >= 5)
             {
                 Move randomMove = emptyCells[rand() % numEmptyCells];
                 int row = randomMove.row;
