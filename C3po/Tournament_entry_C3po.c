@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+
 #define SIZE 7
 
 void printBoard(char board[SIZE][SIZE]);
@@ -63,55 +64,67 @@ bool isValidMove(char board[SIZE][SIZE], int row, int col) {
 }
 
 // Function to play a move
-void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
-    // Check for winning moves
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            if (board[i][j] == ' ') {
-                board[i][j] = player;
-                int countX[5] = {0}, countO[5] = {0};
-                scoreBoard(board, countX, countO);
-                if ((player == 'X' && countX[4] > 0) || (player == 'O' && countO[4] > 0)) {
-                    *x = i;
-                    *y = j;
-                    return;
-                }
-                board[i][j] = ' '; // Undo move
-            }
-        }
-    }
-
-    // If no winning moves, try to block opponent's winning moves
+void playMove(char board[SIZE][SIZE], char player, int *x, int *y)
+{
+    
+    // If no winning moves are found for 'X', it prioritize blocking opponent's winning moves.
     char opponent = (player == 'X') ? 'O' : 'X';
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             if (board[i][j] == ' ') {
+                // Tries placing the opponent's symbol at an empty position.
                 board[i][j] = opponent;
+                
+                // Checks if this move blocks a win for the opponent.
                 int countX[5] = {0}, countO[5] = {0};
                 scoreBoard(board, countX, countO);
-                if ((opponent == 'X' && countX[4] > 0) || (opponent == 'O' && countO[4] > 0)) {
+                if (opponent == 'O' && countO[4] > 0) {
                     *x = i;
                     *y = j;
-                    board[i][j] = player; // Make winning-blocking move
+                    
+                    // Blocks opponent's winning move by placing the current player's symbol here.
+                    board[i][j] = player;
                     return;
                 }
-                board[i][j] = ' '; // Undo move
+                
+                // Undo's the move.
+                board[i][j] = ' ';
+            }
+        }
+    }
+    
+    // Checks for winning moves for the current player.
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++) {
+            if (board[i][j] == ' ') {
+                board[i][j] = player;
+                
+                // Checks if this move leads to a win for the current player.
+                int countX[5] = {0}, countO[5] = {0};
+                scoreBoard(board, countX, countO);
+                if (player == 'X' && countX[4] > 0) {
+                    *x = i;
+                    *y = j;
+                    return;
+                }
+                
+                // Undo's the move.
+                board[i][j] = ' ';
             }
         }
     }
 
-    // If neither winning nor blocking moves available, make a random move
+    // If neither winning nor blocking moves are available, make's a random move.
     int row, col;
-    do {
+    do
+    {
         row = rand() % SIZE;
         col = rand() % SIZE;
     } while (!isValidMove(board, row, col));
-
     *x = row;
     *y = col;
 }
-
-
 
 void initializeBoard(char board[SIZE][SIZE]) {
     // Initialize the board
@@ -350,4 +363,3 @@ void main() {
     playGame(board, player1, player2);
 
 }
-
