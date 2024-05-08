@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
-
 #define SIZE 7
 
 void printBoard(char board[SIZE][SIZE]);
