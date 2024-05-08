@@ -18,7 +18,7 @@ void playMove(char board[SIZE][SIZE], char player, int *x, int *y) {
     if (*y < 0 || *y >= SIZE) {
         *y = rand() % SIZE; 
     }
-    while (!isValidMove(board, *x, *y)) {
+    while (!(*x >= 0 && *x < SIZE && *y >= 0 && *y < SIZE && board[*x][*y] == ' ')) {
         *x = rand() % SIZE;
         *y = rand() % SIZE;
     }
