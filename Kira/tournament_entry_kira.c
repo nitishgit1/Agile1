@@ -5,14 +5,14 @@
 
 #define SIZE 7
 
-void printBoard(char board[SIZE][SIZE]);
+// void printBoard(char board[SIZE][SIZE]);
 bool isValidMove(char board[SIZE][SIZE], int row, int col);
 void playMove_kira(char board[SIZE][SIZE], char player, int *x, int *y);
-void initializeBoard(char board[SIZE][SIZE]);
-void scoreBoard(char board[SIZE][SIZE], int countX[5], int countO[5]);
-void printScores(int countX[5], int countO[5]);
-void playGame(char board[SIZE][SIZE], char player1, char player2);
-void runUnitTests();
+// void initializeBoard(char board[SIZE][SIZE]);
+// void scoreBoard(char board[SIZE][SIZE], int countX[5], int countO[5]);
+// void printScores(int countX[5], int countO[5]);
+// void playGame(char board[SIZE][SIZE], char player1, char player2);
+// void runUnitTests();
 
 
 void playMove_kira(char board[SIZE][SIZE], char player, int *x, int *y) 
