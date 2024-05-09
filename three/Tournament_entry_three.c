@@ -7,6 +7,7 @@
 
 bool isValidMove(char board[SIZE][SIZE], int row, int col);
 bool hasChainOfLength(char player, int x, int y, int length, int direction, char board[SIZE][SIZE]);
+void playMove_three(char board[SIZE][SIZE], char player, int *x, int *y) ;
 
 bool hasChainOfLength(char player, int x, int y, int length, int direction, char board[SIZE][SIZE]) {
     int dx[] = {1, 0};  // right (horizontal), down (vertical)
@@ -88,5 +89,4 @@ void playMove_three(char board[SIZE][SIZE], char player, int *x, int *y) {
     *x = row;
     *y = col;
 }
-
 
