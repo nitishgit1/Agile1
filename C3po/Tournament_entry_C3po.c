@@ -6,8 +6,8 @@
 #define SIZE 7
 
 // void printBoard(char board[SIZE][SIZE]);
-// bool isValidMove(char board[SIZE][SIZE], int row, int col);
-void playMove(char board[SIZE][SIZE], int *x, int *y);
+bool isValidMove(char board[SIZE][SIZE], int row, int col);
+void playMove_C3po(char board[SIZE][SIZE], int *x, int *y);
 // void initializeBoard(char board[SIZE][SIZE]);
 void scoreBoard(char board[SIZE][SIZE], int countX[5]);
 // void printScores(int countX[5]);
@@ -62,7 +62,7 @@ bool isValidMove(char board[SIZE][SIZE], int row, int col) {
 }
 
 // Function to play a move
-void playMove(char board[SIZE][SIZE], int *x, int *y)
+void playMove_C3po(char board[SIZE][SIZE], int *x, int *y)
 {
     // Checks for winning moves for the current player.
     for (int i = 0; i < SIZE; i++)
