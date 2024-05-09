@@ -5,7 +5,6 @@
 
 #define SIZE 7
 
-bool isValidMove(char board[SIZE][SIZE], int row, int col);
 bool hasChainOfLength(char player, int x, int y, int length, int direction, char board[SIZE][SIZE]);
 void playMove_three(char board[SIZE][SIZE], char player, int *x, int *y) ;
 
