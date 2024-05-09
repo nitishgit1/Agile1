@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
@@ -48,6 +47,73 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
                     break;
         }
     }
+    if(j==10)
+    {
+        j=0;
+    }
+   
+    if(j==3){
+        *x=row;
+        *y=j;
+         if(isValid(board,*x,*y))
+        { 
+            return 0;
+        }
+    }
+    
+    if(j==2){
+        *x=row;
+        *y=j;
+         if(isValid(board,*x,*y))
+        { 
+            return 0;
+        }
+    }
+     
+    if(j==4){
+        *x=row;
+        *y=j;
+         if(isValid(board,*x,*y))
+        { 
+            return 0;
+        }
+    }
+     
+    if(j==1){
+        *x=row;
+        *y=j;
+         if(isValid(board,*x,*y))
+        { 
+            return 0;
+        }
+    }
+     
+    if(j==5){
+        *x=row;
+        *y=j;
+         if(isValid(board,*x,*y))
+        { 
+            return 0;
+        }
+    }
+     
+    if(j==0){
+        *x=row;
+        *y=j;
+         if(isValid(board,*x,*y))
+        { 
+            return 0;
+        }
+    }
+   
+    if(j==6){
+        *x=row;
+        *y=j;
+         if(isValid(board,*x,*y))
+        { 
+            return 0;
+        }
+    }
     }
     int i=3;
     if(finaldec=='c')
@@ -76,28 +142,16 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
             default:i=10;
                     break;
         }
-    }
+   
     }
     if(i==10)
     {
         i=0;
     }
-    if(j==10)
-    {
-        j=0;
-    }
-    if(i==3){
+     if(i==3){
         *x=i;
         *y=col;
         if(isValid(board,*x,*y))
-        { 
-            return 0;
-        }
-    }
-    if(j==3){
-        *x=row;
-        *y=j;
-         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -110,15 +164,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
             return 0;
         }
     }
-    if(j==2){
-        *x=row;
-        *y=j;
-         if(isValid(board,*x,*y))
-        { 
-            return 0;
-        }
-    }
-     if(i==4){
+    if(i==4){
         *x=i;
         *y=col;
          if(isValid(board,*x,*y))
@@ -126,15 +172,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
             return 0;
         }
     }
-    if(j==4){
-        *x=row;
-        *y=j;
-         if(isValid(board,*x,*y))
-        { 
-            return 0;
-        }
-    }
-     if(i==1){
+    if(i==1){
         *x=i;
         *y=col;
          if(isValid(board,*x,*y))
@@ -142,15 +180,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
             return 0;
         }
     }
-    if(j==1){
-        *x=row;
-        *y=j;
-         if(isValid(board,*x,*y))
-        { 
-            return 0;
-        }
-    }
-     if(i==5){
+    if(i==5){
         *x=i;
         *y=col;
          if(isValid(board,*x,*y))
@@ -158,15 +188,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
             return 0;
         }
     }
-    if(j==5){
-        *x=row;
-        *y=j;
-         if(isValid(board,*x,*y))
-        { 
-            return 0;
-        }
-    }
-     if(i==0){
+    if(i==0){
         *x=i;
         *y=col;
          if(isValid(board,*x,*y))
@@ -174,15 +196,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
             return 0;
         }
     }
-    if(j==0){
-        *x=row;
-        *y=j;
-         if(isValid(board,*x,*y))
-        { 
-            return 0;
-        }
-    }
-     if(i==6){
+      if(i==6){
         *x=i;
         *y=col;
          if(isValid(board,*x,*y))
@@ -190,26 +204,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
             return 0;
         }
     }
-    if(j==6){
-        *x=row;
-        *y=j;
-         if(isValid(board,*x,*y))
-        { 
-            return 0;
-        }
     }
-    
-if(finaldec=='r')
-{
-    *x=row;
-    *y=j;
-}
-if(finaldec=='c')
-{
-    *x=i;
-    *y=col;
-}
-
 return 1;
 
     
@@ -479,7 +474,7 @@ if(player=='X')
     int test3=checkbestmove(board,player,row1,col1,&x1,&y1,plyr1,plyr2);
     *x=x1;
     *y=y1;
-    if(isValid(board,x1,y1))
+    if(!isValid(board,x1,y1))
     {   
         int row, col;
     do {
