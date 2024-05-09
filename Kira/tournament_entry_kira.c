@@ -6,7 +6,7 @@
 
 #define SIZE 7
 
-bool isValidMove(char board[SIZE][SIZE], int row, int col);
+bool isValid(char board[SIZE][SIZE], int row, int col);
 void playMove_kira(char board[SIZE][SIZE], char player, int *x, int *y);
 int checkrow(char board[SIZE][SIZE], char player,int *row,char *plyr);
 int checkcol(char board[SIZE][SIZE], char player, int *col,char *plyr);
@@ -15,7 +15,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
 
 
 // Function to check if a move is valid
-bool isValidMove(char board[SIZE][SIZE], int row, int col) {
+bool isValid(char board[SIZE][SIZE], int row, int col) {
     return (row >= 0 && row < SIZE && col >= 0 && col < SIZE && board[row][col] == ' ');
 }
 
@@ -89,7 +89,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(i==3){
         *x=i;
         *y=col;
-        if(isValidMove(board,*x,*y))
+        if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -97,7 +97,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(j==3){
         *x=row;
         *y=j;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -105,7 +105,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
      if(i==2){
         *x=i;
         *y=col;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -113,7 +113,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(j==2){
         *x=row;
         *y=j;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -121,7 +121,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
      if(i==4){
         *x=i;
         *y=col;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -129,7 +129,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(j==4){
         *x=row;
         *y=j;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -137,7 +137,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
      if(i==1){
         *x=i;
         *y=col;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -145,7 +145,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(j==1){
         *x=row;
         *y=j;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -153,7 +153,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
      if(i==5){
         *x=i;
         *y=col;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -161,7 +161,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(j==5){
         *x=row;
         *y=j;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -169,7 +169,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
      if(i==0){
         *x=i;
         *y=col;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -177,7 +177,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(j==0){
         *x=row;
         *y=j;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -185,7 +185,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
      if(i==6){
         *x=i;
         *y=col;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -193,7 +193,7 @@ int findbestmove(char board[SIZE][SIZE],int row,int col,char finaldec,int *x,int
     if(j==6){
         *x=row;
         *y=j;
-         if(isValidMove(board,*x,*y))
+         if(isValid(board,*x,*y))
         { 
             return 0;
         }
@@ -451,7 +451,7 @@ void playMove_kira(char board[SIZE][SIZE], char player, int *x, int *y) {
 
 if(player=='X')
     {
-        if(isValidMove(board,3,3))
+        if(isValid(board,3,3))
         {
             *x = 3;
             *y = 3;
@@ -460,7 +460,7 @@ if(player=='X')
             for(int row = 0; row < SIZE; row++) {
                 for(int col = 0; col < SIZE; col++) {
                     if (board[row][col] == 'O') {
-                        if(isValidMove(board,6-row,6-col))
+                        if(isValid(board,6-row,6-col))
                         {
                                 *x =6-row;
                                 *y = 6-col;
@@ -479,16 +479,17 @@ if(player=='X')
     int test3=checkbestmove(board,player,row1,col1,&x1,&y1,plyr1,plyr2);
     *x=x1;
     *y=y1;
-    if(isValidMove(board,x1,y1))
+    if(isValid(board,x1,y1))
     {   
         int row, col;
     do {
         row = rand() % SIZE;
         col = rand() % SIZE;
-    } while (!isValidMove(board, row, col));
+    } while (!isValid(board, row, col));
 
     *x = row;
     *y = col;
     }
+      
 }
 }
